@@ -1,0 +1,138 @@
+.content {
+	padding: 20px 50px 50px 50px;
+	border-style: solid;
+	border-color: black;
+	border-width: 6px;
+	border-radius: 10px;
+	max-width: 350px;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);	text-align: center;
+	background-color: lightgray;
+}
+
+html 
+{
+    background-color: lightblue;
+}
+
+h1 {
+	font-family: 'Trebuchet MS', sans-serif;
+}
+
+h2 {
+	font-family: 'Trebuchet MS', sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+  
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons
+{
+    font-size: 25px;
+    margin-top: 15px;
+	margin-bottom: 15px;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.buttons:hover {
+    background-color: lightblue;
+}
+
+br {
+	margin-bottom: 20px;
+}
+
+#loginName
+{
+	font-size: 25px;
+}
+#loginPassword
+{
+	font-size: 25px;
+}
+#registerFirst
+{
+	font-size: 25px;
+}
+#registerLast
+{
+	font-size: 25px;
+}
+#registerName
+{
+	font-size: 25px;
+}
+#registerPassword
+{
+	font-size: 25px;
+}
+#searchText
+{
+	font-size: 25px;
+}
+#colorText
+{
+	font-size: 25px;
+}
+
+input[type="text"],input[type="password"]{
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+#loginResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#userName{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+select{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 0.75em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#colorSearchResult{
+    display: none;
+}
+
+#colorAddResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
