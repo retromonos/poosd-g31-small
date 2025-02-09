@@ -3,7 +3,7 @@
 
     $userId = $inData["userId"];
 
-	$conn = new mysqli("localhost", "157.245.254.140", "POOST31g", "poosd31");
+	$conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
