@@ -53,7 +53,7 @@ h1{
     position: relative;
     width: 320px;
     height: 320px;
-    left: 1130px;
+    left: 1204px;
     top: 410px;
 }
 #search{
@@ -175,8 +175,8 @@ h2{
     width: 100%;
     border-spacing: 0;
     border: 5px solid white;
-    border-bottom-left-radius: 31px;
-    border-bottom-right-radius: 31px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 #tableName{
     width:35%
@@ -211,10 +211,10 @@ h2{
 }
 
 #pawPalTable tr:last-child td:first-child{
-    border-bottom-left-radius: 25px;
+    border-bottom-left-radius: 0px;
 }
 #pawPalTable tr:last-child td:last-child{
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: 0px;
 }
 .edit-button, .delete-button {
     width: 60px;
