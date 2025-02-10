@@ -186,7 +186,7 @@ h2{
     font-size: 20px;
 }
 #pawPalTable th, #pawPalTable td{
-    border: 5px solid white;
+    border: 2.5px solid white;
     padding: 10px;
     text-align: center;
 }
