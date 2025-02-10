@@ -130,17 +130,71 @@
             document.getElementById('overlay').style.display = 'block';   
         }
 
-        function deleteConfirmPal(){
-            //this is the function that actually deletes the user,, the delete button callled deletePal() which pulls up the are you sure box, 
-            // then if user hits delete it will call this fucntion
-            //call the delete Result box once succesfful deleted
+        function deleteConfirmPal(contactId) {
+        let tmp = { id: contactId, userId: userId };
+        let jsonPayload = JSON.stringify(tmp);
+        let url = urlBase + '/DeleteContact.' + extension;
+        
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText.includes("Contact delete successfully")) {
+                        document.getElementById("deleteResult").innerHTML = "PawPal successfully deleted!";
+                        closePal();
+                        searchPal(); // Refresh the list
+                    } else {
+                        document.getElementById("deleteResult").innerHTML = "Error deleting PawPal.";
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            document.getElementById("deleteResult").innerHTML = err.message;
         }
+    }
 
-        function editConfirmPal(){
-            //this function saves the info that is edited, the edit button called editPal() brings up the contact card with the filled info
-            //then once user hits save it will call this functoin to save the info
-            //call editResult box once succfull
+    function editConfirmPal(contactId) {
+        let firstName = document.getElementById("editFirstName").value;
+        let lastName = document.getElementById("editLastName").value;
+        let number = document.getElementById("editNumber").value;
+        let email = document.getElementById("editEmail").value;
+        let description = document.getElementById("editDescription").value;
+        
+        let tmp = {
+            id: contactId,
+            firstName: firstName,
+            lastName: lastName,
+            phone: number,
+            email: email,
+            description: description,
+            userId: userId
+        };
+        let jsonPayload = JSON.stringify(tmp);
+        let url = urlBase + '/EditContact.' + extension;
+        
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText.includes("Contact successfully updated")) {
+                        document.getElementById("editResult").innerHTML = "PawPal successfully updated!";
+                        closePal();
+                        searchPal(); // Refresh the list
+                    } else {
+                        document.getElementById("editResult").innerHTML = "Error updating PawPal.";
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            document.getElementById("editResult").innerHTML = err.message;
         }
+    }
 
         function closePal(){   //closes popup windows
             document.getElementById('createPal').style.display = 'none';
