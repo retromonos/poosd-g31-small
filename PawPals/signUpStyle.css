@@ -105,3 +105,6 @@ button{
     align-items: center;    
     flex-direction: column;
 }
+#registerResult{
+    min-height: 45px;
+}
