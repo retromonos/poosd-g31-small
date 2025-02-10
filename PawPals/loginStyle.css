@@ -93,7 +93,7 @@ h1{
 }
 #or{
     font-size: 30px;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 #account{
     font-size: 22px;
@@ -105,7 +105,7 @@ a{
     font-weight: bold;
     margin-top: 20px;
 }
-#loginResult{
+/* #loginResult{
     display: none;
     height: 30px;
     width: 330px;
@@ -119,4 +119,7 @@ a{
     text-align: center;
     align-items: center; 
     justify-content: center;
+} */
+#loginResunt{
+    min-height: 25px;
 }
