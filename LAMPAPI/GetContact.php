@@ -16,7 +16,7 @@
 		
 		$stmt = $conn->prepare("select FirstName, LastName, Phone, Email, Description, ID from Contacts where ID=?");
 		
-		$stmt->bind_param("i", $colorName, $colorName, $inData["id"]);
+		$stmt->bind_param("i", $inData["id"]);
 		
 		$stmt->execute();
 		
