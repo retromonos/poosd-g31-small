@@ -328,10 +328,12 @@
                             let cell5 = newRow.insertCell(4);
                             let cell6 = newRow.insertCell(5);
 
-                            cell1.textContent = pal.firstName;
-                            cell2.textContent = pal.lastName;
-                            cell3.textContent = pal.phone;
-                            cell4.textContent = pal.email;
+                            cell1.textContent = pal.firstName + " " + pal.lastName;
+                            cell1.id = "tableName"
+                            cell2.textContent = pal.phone;
+                            cell2.id = "tablePhone"
+                            cell3.textContent = pal.email;
+                            cell3.id = "tableEmail"
 
                             //edit buttom
                             const editButton = document.createElement('button');
@@ -345,7 +347,7 @@
                                 activeID = pal.id;
                                 editPal(newRow);
                             };
-                            cell5.appendChild(editButton);
+                            cell4.appendChild(editButton);
 
                             //delete button
                             const deleteButton = document.createElement('button');
@@ -359,7 +361,8 @@
                                 activeID = pal.id;
                                 deletePal(newRow);
                             };
-                            cell6.appendChild(deleteButton);                    
+                            cell4.appendChild(deleteButton);                    
+                            cell4.id = "tableControls"
                         }
                         
                         document.getElementById("searchResult").innerHTML = "PawPal(s) retrieved successfully";

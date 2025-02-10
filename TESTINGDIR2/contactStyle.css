@@ -179,6 +179,18 @@ h2{
     border-bottom-left-radius: 31px;
     border-bottom-right-radius: 31px;
 }
+#tableName{
+    width:40%
+}
+#tablePhone{
+    width:15%
+}
+#tableEmail{
+    width:35%
+}
+#tableControls{
+    width: 10%;
+}
 #pawPalTable thead{
     color: white;
     position: sticky;
