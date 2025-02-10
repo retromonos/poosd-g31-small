@@ -196,6 +196,34 @@
         }
     }
 
+    function getActivePal() {
+
+        let tmp = {
+            id: activeID
+        };
+        let jsonPayload = JSON.stringify(tmp);
+        let url = urlBase + '/GetContact.' + extension;
+        
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText.includes("results")) {
+                        let jsonObject = JSON.parse(xhr.responseText);
+                        return jsonObject.results[0]
+                    } else {
+                        document.getElementById("editResult").innerHTML = "Error updating PawPal.";
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            console.log("Error getting contact with ID: "+activeID)
+        }
+    }
+
         function closePal(){   //closes popup windows
             document.getElementById('createPal').style.display = 'none';
             document.getElementById('editPawPal').style.display ='none';
@@ -204,17 +232,13 @@
         }
 
         function editPal(row) { //calls the edit box with auto filled info
-            const firstName = row.cells[0].textContent;
-            const lastName = row.cells[1].textContent;
-            const number = row.cells[2].textContent;
-            const email = row.cells[3].textContent;
-            const description = row.cells[4].textContent;
+            const curPal = getActivePal()
 
-            document.getElementById('editFirstName').value = firstName;
-            document.getElementById('editLastName').value = lastName;
-            document.getElementById('editNumber').value = number;
-            document.getElementById('editEmail').value = email;
-            document.getElementById('editDescription').value = description;
+            document.getElementById('editFirstName').value = curPal.firstName;
+            document.getElementById('editLastName').value = curPal.lastName;
+            document.getElementById('editNumber').value = curPal.phone;
+            document.getElementById('editEmail').value = curPal.email;
+            document.getElementById('editDescription').value = curPal.description;
 
             document.getElementById('editPawPal').style.display = 'flex';
             document.getElementById('overlay').style.display = 'block';
@@ -326,9 +350,9 @@
 
                             cell1.textContent = pal.firstName + " " + pal.lastName;
                             cell1.id = "tableName"
-                            cell2.textContent = pal.phone;
+                            cell2.textContent = pal.phone != "" ? pal.phone : "N/A";
                             cell2.id = "tablePhone"
-                            cell3.textContent = pal.email;
+                            cell3.textContent = pal.email != "" ? pal.email : "N/A";
                             cell3.id = "tableEmail"
 
                             //edit buttom
