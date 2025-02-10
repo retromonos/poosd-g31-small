@@ -43,8 +43,9 @@
             <input type="text" id="description" placeholder="  Description">
             
 
-            <button type="button" id="savePal" onclick="savePal()"> Add </button>
+            <button type="button" id="savePal" onclick="trySavePal()"> Add </button>
             <button type="button" id="closePal" onclick="closePal()"> Cancel </button>
+            <div id="nameError" style="padding: 20px;"></div>
         </div>
 
         <div id="editPawPal">
@@ -57,6 +58,7 @@
 
             <button type="button" id="edit" onclick="editConfirmPal(activeID)"> Save </button>
             <button type="button" id="cancel1" onclick="closePal()"> Cancel </button>
+            <div id="editNameError" style="padding: 20px;"></div>
         </div>
 
         <div id="addResult">
@@ -260,6 +262,32 @@
                 window.location.href = "login.html";
 
             }, 1000)
+        }
+
+        function trySavePal()
+        {
+            if(document.getElementById("firstName").value == "" && document.getElementById("lastName").value == "")
+            {
+                document.getElementById("nameError").innerHTML = "Your PawPal must have a name."
+            }
+            else
+            {
+                document.getElementById("nameError").innerHTML = ""
+                savePal()
+            }
+        }
+
+        function tryEditPal(aid)
+        {
+            if(document.getElementById("editFirstName").value == "" && document.getElementById("editLastName").value == "")
+            {
+                document.getElementById("editNameError").innerHTML = "Your PawPal must have a name."
+            }
+            else
+            {
+                document.getElementById("editNameError").innerHTML = ""
+                editConfirmPal(aid)
+            }
         }
 
         function savePal() { //once info is entered set it
