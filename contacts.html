@@ -164,12 +164,11 @@
     function editConfirmPal(contactId) {        
         let tmp = {
             id: contactId,
-            firstName: firstName,
-            lastName: lastName,
-            phone: number,
-            email: email,
-            description: description,
-            userId: userId
+            firstName: document.getElementById("editFirstName").value,
+            lastName: document.getElementById("editLastName").value,
+            phone: document.getElementById("editPhone").value,
+            email: document.getElementById("editNumber").value,
+            description: document.getElementById("editDescription").value
         };
         let jsonPayload = JSON.stringify(tmp);
         let url = urlBase + '/EditContact.' + extension;
