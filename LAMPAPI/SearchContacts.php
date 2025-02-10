@@ -31,7 +31,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '{"firstName": "' . $row["FirstName"] . '", "lastName": "' . $row["LastName"] . '", "phone": "'.$row["Phone"].'", "email": "'.$row["Email"].'", "description": "'.$row["Description"].', "id": '.$row["ID"].'}';
+			$searchResults .= '{"firstName": "' . $row["FirstName"] . '", "lastName": "' . $row["LastName"] . '", "phone": "'.$row["Phone"].'", "email": "'.$row["Email"].'", "description": "'.$row["Description"].'", "id": '.$row["ID"].'}';
 		}
 		
 		if( $searchCount == 0 )
