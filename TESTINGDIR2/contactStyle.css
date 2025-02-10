@@ -176,6 +176,8 @@ h2{
     table-layout: fixed;
     border-spacing: 0;
     border: 5px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 #pawPalTable thead{
     color: white;
