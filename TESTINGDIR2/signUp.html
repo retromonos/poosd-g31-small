@@ -40,7 +40,7 @@
             const validBox = document.getElementById("validate")
             let ps = document.getElementById("registerPassword").value
             
-            if(ps.match("/^(?=.*?[0-9]).{8,}$/"))
+            if(ps.match("^(?=.*?[0-9]).{8,}$"))
             {
                 validBox.innerHTML = "Password valid!"
                 return true
