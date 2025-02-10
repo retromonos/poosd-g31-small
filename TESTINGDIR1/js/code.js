@@ -206,7 +206,7 @@ function savePal() {
 
 function loadContacts() {
 
-    fetch("TESTINGDIR1/LAMPAPI/SearchContacts.php")
+    fetch("LAMPAPI/SearchContacts.php")
         .then(response => response.json())
         .then(data => {
             console.log("Received data from API:", data); // ✅ Debugging log
@@ -217,14 +217,7 @@ function loadContacts() {
 
             const tableBody = document.getElementById("pawPalTable").getElementsByTagName("tbody")[0];
             tableBody.innerHTML = "";
-            data.results.forEach(contact => { // ✅ Use `data.results.forEach`
-
-    fetch("LAMPAPI/SearchContacts.php")
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById("pawPalTable").getElementsByTagName("tbody")[0];
-            tableBody.innerHTML = "";
-            data.forEach(contact => {
+            data.results.forEach(contact => {
 
                 const row = tableBody.insertRow();
                 row.innerHTML = `
