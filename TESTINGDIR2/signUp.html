@@ -54,7 +54,25 @@
 
         function tryRegister()
         {
-            if(validatePassword()) doRegister();
+            if(document.getElementById("registerFirst").value == ""
+            || document.getElementById("registerLast").value == ""
+            || document.getElementById("registerName").value == ""
+            || document.getElementById("registerPassword").value == "")
+            {
+                document.getElementById("registerResult").innerHTML = "All fields must contain text"
+                return
+            }
+
+            if(!validatePassword())
+            {
+                document.getElementById("registerResult").innerHTML = "Password must be valid"
+                return
+            }
+            else 
+            {
+                document.getElementById("registerResult").innerHTML = ""
+                doRegister()
+            }
         }
     </script>
 </html>
