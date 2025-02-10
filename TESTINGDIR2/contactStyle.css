@@ -196,6 +196,11 @@ h2{
     font-size: 20px;
 }
 
+#pawPalTable tbody
+{
+    border: 5px solid white;
+}
+
 #pawPalTable tr:last-child td:first-child{
     border-bottom-left-radius: 25px;
 }
