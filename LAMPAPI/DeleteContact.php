@@ -6,6 +6,9 @@
 
 $conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
 
+
+	$conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
+
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );

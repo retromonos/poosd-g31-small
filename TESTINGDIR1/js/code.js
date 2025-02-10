@@ -205,6 +205,7 @@ function savePal() {
 }
 
 function loadContacts() {
+
     fetch("TESTINGDIR1/LAMPAPI/SearchContacts.php")
         .then(response => response.json())
         .then(data => {
@@ -217,18 +218,28 @@ function loadContacts() {
             const tableBody = document.getElementById("pawPalTable").getElementsByTagName("tbody")[0];
             tableBody.innerHTML = "";
             data.results.forEach(contact => { // ✅ Use `data.results.forEach`
+
+    fetch("LAMPAPI/SearchContacts.php")
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById("pawPalTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = "";
+            data.forEach(contact => {
+
                 const row = tableBody.insertRow();
                 row.innerHTML = `
                     <td>${contact.firstName}</td>
                     <td>${contact.lastName}</td>
                     <td>${contact.phone}</td>
                     <td>${contact.email}</td>
-                    <td><button class='edit-button' onclick='editPal("${contact.phone}")'><img src='files/edit.png' alt='Edit'></button></td>
-                    <td><button class='delete-button' onclick='deletePal("${contact.phone}")'><img src='files/delete.png' alt='Delete'></button></td>
+                    <td><button class='edit-button' onclick='editPal(${contact.id})'><img src='files/edit.png' alt='Edit'></button></td>
+                    <td><button class='delete-button' onclick='deletePal(${contact.id})'><img src='files/delete.png' alt='Delete'></button></td>
+
                 `;
             });
         })
         .catch(error => {
+
             alert("An error occurred while loading contacts: " + error.message);
             console.error("Error loading contacts:", error);
         });
