@@ -10,6 +10,11 @@ function goToRegister()
 	window.location.href = 'register.html';
 }
 
+function goToLogin()
+{
+	window.location.href = 'index.html';
+}
+
 function doLogin()
 {
 	userId = 0;
@@ -51,7 +56,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "contacts.html";
+				window.location.href = "color.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -163,7 +168,7 @@ function addColor()
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {color:newColor,userId, userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddColor.' + extension;
@@ -233,3 +238,8 @@ function searchColor()
 	}
 	
 }
+
+
+:wq
+poosdsm31-2025.me
+

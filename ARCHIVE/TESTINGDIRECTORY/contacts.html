@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="js/code.js"></script>
+    </head>
+<style>
+    body{
+        background-color: #a37a69;
+        background-size: cover; /* Cover the entire screen */
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        padding: 20px;
+        font-family: 'Bradley Hand', cursive;
+    }
+    h1{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+    }
+    #mainPage{
+        width: 1300px;
+        height: 650px;
+        background-color: #edafb0;
+        border: 5px solid white;
+        border-radius: 25px;
+        position: relative;
+    }
+    #pawTrail{
+        position: absolute;
+        width: 500px;
+        height: auto;
+        left: -170px;
+        top: 200px;
+    }
+    #logOutButton{
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        width: 180px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: #edafb0;
+        border: 3px solid white;
+        font-family: 'Bradley Hand', cursive;
+        font-size: 20px;
+        cursor: pointer;
+        color: white;
+    }
+    @media (max-width: 1400px) {
+        #logOutButton {
+            display: none;
+        }
+    }   
+    #pets{
+        position: relative;
+        width: 320px;
+        height: 320px;
+        left: 1130px;
+        top: 410px;
+    }
+    #search{
+        width: 1000px;
+        height: 50px;
+        border-radius: 25px;
+        border: 5px solid white;
+        opacity: 0.5px;
+        display: block;
+        background-color: #ffebb5;
+        font-size: 18px;
+        outline: black;
+        font-family: 'Bradley Hand', cursive;
+    }
+    #searchBar{
+        position: absolute;
+        top: 30px;
+        left: 8%;
+        display: flex;
+        align-items: center;
+    }
+    #searchIcon{
+        height: 35px;
+        width: 35px;
+        position: relative;
+        left: 990px;
+        top: -10px;
+    }
+    #addPal{
+        position: relative;
+        bottom: 180px;
+        left: 200px;
+        width: 180px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: #ffebb5;
+        border: 4px solid white;
+        font-family: 'Bradley Hand', cursive;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    #overlay{
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+    }
+    #createPal{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 700px;
+        text-align: center;
+        background-color: #ffebb5;
+        border-radius: 25px;
+        border: 5px solid white;
+        font-size: 25px;
+        
+        justify-content: center; /* Centers content horizontally */
+        align-items: center;     /* Centers content vertically */
+        flex-direction: column;
+    }
+    #savePal, #closePal{
+        width: 180px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: #a37a69;
+        border: 3px solid white;
+        font-family: 'Bradley Hand', cursive;
+        font-size: 20px;
+        cursor: pointer;
+        color: white;
+        margin-bottom: 20px;
+    }
+    input{
+        width: 450px;
+        height: 50px;
+        border-radius: 25px;
+        border: 5px solid #a37a69;
+        opacity: 0.5px;
+        display: block;
+        background-color:rgba(255, 255, 255, 0.7);
+        font-size: 18px;
+        outline: black;
+        font-family: 'Bradley Hand', cursive;
+        margin-bottom: 20px;
+    }
+    #description{
+        width: 450px;
+        height: 110px;
+        border-radius: 25px;
+        border: 5px solid #a37a69;
+        opacity: 0.5px;
+        display: block;
+        background-color:rgba(255, 255, 255, 0.7);
+        font-size: 18px;
+        outline: black;
+        font-family: 'Bradley Hand', cursive;
+        margin-bottom: 20px;
+    }
+    h2{
+        font-size: 35px;
+        color:#a37a69;
+    }
+    #infoTable{
+        width: 1200px;
+        height: 410px;
+        margin: -155px;
+        margin-left: 50px;
+        overflow-y: auto;
+    }
+    #pawPalTable{
+        width: 100%;
+        table-layout: fixed;
+        border-spacing: 0;
+    }
+    #pawPalTable thead{
+        color: white;
+        position: sticky;
+        border: 5px solid white;
+        top: 0;
+        background-color: #a37a69;
+        font-size: 20px;
+    }
+    #pawPalTable th, #pawPalTable td{
+        border: 5px solid white;
+        padding: 10px;
+        text-align: center;
+    }
+    #pawPalTable td{
+        background-color: #ffebb5;
+        word-wrap: break-word; 
+        font-size: 20px;
+    }
+  
+    #pawPalTable tr:first-child th:first-child{
+        border-top-left-radius: 25px;
+    }
+    #pawPalTable tr:first-child th:last-child{
+        border-top-right-radius: 25px;
+    }
+    #pawPalTable tr:last-child td:first-child{
+        border-bottom-left-radius: 25px;
+    }
+    #pawPalTable tr:last-child td:last-child{
+        border-bottom-right-radius: 25px;
+    }
+    .edit-button, .delete-button {
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: inline-block;
+    }
+
+    .edit-button img, .delete-button img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    #editPawPal{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 700px;
+        text-align: center;
+        background-color: #a37a69;
+        border-radius: 25px;
+        border: 5px solid white;
+        font-size: 25px;
+        
+        justify-content: center; /* Centers content horizontally */
+        align-items: center;     /* Centers content vertically */
+        flex-direction: column;
+    }
+    #editPawPal input{
+        input{
+        width: 450px;
+        height: 50px;
+        border-radius: 25px;
+        border: 5px solid black;
+        opacity: 0.5px;
+        display: block;
+        background-color:rgba(255, 255, 255, 0.7);
+        font-size: 18px;
+        outline: black;
+        font-family: 'Bradley Hand', cursive;
+        margin-bottom: 20px;
+    }
+    }
+    #edit, #cancel1{
+        width: 180px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: #ffebb5;
+        border: 3px solid white;
+        font-family: 'Bradley Hand', cursive;
+        font-size: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    h3{
+        font-size: 35px;
+        color: white;
+    } 
+    #deletePawPal{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 300px;
+        text-align: center;
+        background-color: #edafb0;
+        border-radius: 25px;
+        border: 5px solid white;
+        font-size: 25px;
+        color: white;
+        
+        justify-content: center; /* Centers content horizontally */
+        align-items: center;     /* Centers content vertically */
+        flex-direction: column;
+    }
+    #delete, #cancel2{
+        width: 180px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: #ffebb5;
+        border: 3px solid white;
+        font-family: 'Bradley Hand', cursive;
+        font-size: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    #logOutMsg{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 300px;
+        text-align: center;
+        background-color: #edafb0;
+        border-radius: 25px;
+        border: 5px solid white;
+        font-size: 25px;
+        color: white;
+        
+        justify-content: center; /* Centers content horizontally */
+        align-items: center;     /* Centers content vertically */
+        flex-direction: column;
+    }  
+    .searchButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .searchButton img {
+        width: 35px; /* Adjust size as needed */
+        height: 35px;
+    }
+</style>
+<body>
+    <h1> Chaya's Pawfolio </h1>
+
+    <img id="pawTrail" src="files/pawTrail.png" alt="Paw Trail">
+    <button type="button" id="logOutButton" onclick="doLogout();"> Log Out </button>
+    <div id="mainPage">
+        <img id="pets" src="files/pets.png" alt="pets">
+        <div id="searchBar">
+            <input type="text" id="search" placeholder=" Search for PawPals...">
+            <button class="searchButton" id="searchButton">
+                <img src="files/searchIcon.png" alt="Search">
+            </button>
+        </div>
+        <button type="button" id="addPal"> Add PawPal </button>
+
+        <div id="infoTable">
+            <table id="pawPalTable">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>                
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="createPal">
+        <h2> Add PawPal</h2>
+        <input type="text" id="firstName" placeholder="  First Name">
+        <input type="text" id="lastName" placeholder="  Last Name">
+        <input type="text" id="number" placeholder="  Phone Number">
+        <input type="text" id="email" placeholder="  Email">
+        <input type="text" id="description" placeholder="  Description">
+        
+        <button type="button" id="savePal"> Add </button>
+        <button type="button" id="closePal"> Cancel </button>
+    </div>
+
+    <div id="editPawPal">
+        <h3> Edit PawPal</h3>
+        <input type="text" id="editFirstName" placeholder="  First Name">
+        <input type="text" id="editLastName" placeholder="  Last Name">
+        <input type="text" id="editNumber" placeholder="  Phone Number">
+        <input type="text" id="editEmail" placeholder="  Email">
+        <input type="text" id="editDescription" placeholder="  Description">
+        <button type="button" id="edit"> Save </button>
+        <button type="button" id="cancel1"> Cancel </button>
+    </div>
+    <div id="deletePawPal">
+        <p>Are you sure you want to delete PawPal?</p>
+        <button type="button" id="delete"> Delete </button>
+        <button type="button" id="cancel2"> Cancel </button>
+    </div>
+    
+    <div id="logOutMsg">
+        <p>See you again soon! </br> Logging out Now..</p>
+    </div>
+</body>
+</html>
