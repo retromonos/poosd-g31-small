@@ -173,7 +173,6 @@ h2{
 }
 #pawPalTable{
     width: 100%;
-    table-layout: fixed;
     border-spacing: 0;
     border: 5px solid white;
     border-bottom-left-radius: 31px;

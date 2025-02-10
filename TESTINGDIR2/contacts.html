@@ -20,12 +20,10 @@
                 <table id="pawPalTable">
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone Number</th>
+                            <th>Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Controls</th>
                         </tr>                
                     </thead>
                     <tbody>
@@ -325,8 +323,6 @@
                             let cell2 = newRow.insertCell(1);
                             let cell3 = newRow.insertCell(2);
                             let cell4 = newRow.insertCell(3);
-                            let cell5 = newRow.insertCell(4);
-                            let cell6 = newRow.insertCell(5);
 
                             cell1.textContent = pal.firstName + " " + pal.lastName;
                             cell1.id = "tableName"
