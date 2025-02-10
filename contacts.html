@@ -1,7 +1,8 @@
 <html>
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
-    <link href="contactStyle.css" rel="stylesheet">	
+    <link href="contactStyle.css" rel="stylesheet">
+    <title id="siteTitle">Pawfolio | Contacts</title>
     
     <body>
         <h1 id="userPawfolio"></h1>
@@ -124,6 +125,7 @@
             else
             {
                 document.getElementById("userPawfolio").innerHTML = firstName + " " + lastName + "'s Pawfolio";
+                document.getElementById("siteTitle").innerHTML = firstName + " " + lastName;
             }
         }
         function createPawPal() //calls the createPal box to show up
