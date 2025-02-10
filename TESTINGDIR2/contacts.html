@@ -42,7 +42,6 @@
             <input type="text" id="lastName" placeholder="  Last Name">
             <input type="text" id="number" placeholder="  Phone Number">
             <input type="text" id="email" placeholder="  Email">
-            <input type="text" id="description" placeholder="  Description">
             
 
             <button type="button" id="savePal" onclick="savePal()"> Add </button>
@@ -55,7 +54,6 @@
             <input type="text" id="editLastName" placeholder="  Last Name">
             <input type="text" id="editNumber" placeholder="  Phone Number">
             <input type="text" id="editEmail" placeholder="  Email">
-            <input type="text" id="editDescription" placeholder="  Description">
 
             <button type="button" id="edit" onclick="editConfirmPal(activeID)"> Save </button>
             <button type="button" id="cancel1" onclick="closePal()"> Cancel </button>
@@ -163,7 +161,6 @@
         let lastName = document.getElementById("editLastName").value;
         let number = document.getElementById("editNumber").value;
         let email = document.getElementById("editEmail").value;
-        let description = document.getElementById("editDescription").value;
         
         let tmp = {
             id: contactId,
@@ -171,7 +168,7 @@
             lastName: lastName,
             phone: number,
             email: email,
-            description: description,
+            description: "",
             userId: userId
         };
         let jsonPayload = JSON.stringify(tmp);
@@ -210,13 +207,11 @@
             const lastName = row.cells[1].textContent;
             const number = row.cells[2].textContent;
             const email = row.cells[3].textContent;
-            const description = row.cells[4].textContent;
 
             document.getElementById('editFirstName').value = firstName;
             document.getElementById('editLastName').value = lastName;
             document.getElementById('editNumber').value = number;
             document.getElementById('editEmail').value = email;
-            document.getElementById('editDescription').value = description;
 
             document.getElementById('editPawPal').style.display = 'flex';
             document.getElementById('overlay').style.display = 'block';
@@ -247,7 +242,6 @@
             let lastName = document.getElementById("lastName").value;
             let number = document.getElementById("number").value;
             let email = document.getElementById("email").value;
-            let description = document.getElementById("description").value;
 
             document.getElementById("addResult").innerHTML = "";
 
@@ -256,7 +250,7 @@
                 lastName: lastName,
                 phone: number,
                 email: email,
-                description: description,
+                description: "",
                 userId: userId
             };
             let jsonPayload = JSON.stringify( tmp );
