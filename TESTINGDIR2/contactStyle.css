@@ -175,6 +175,7 @@ h2{
     width: 100%;
     table-layout: fixed;
     border-spacing: 0;
+    border: 5px solid white;
 }
 #pawPalTable thead{
     color: white;
@@ -194,11 +195,6 @@ h2{
     background-color: #ffebb5;
     word-wrap: break-word; 
     font-size: 20px;
-}
-
-#pawPalTable tbody
-{
-    border: 5px solid white;
 }
 
 #pawPalTable tr:last-child td:first-child{
