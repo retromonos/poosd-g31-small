@@ -9,8 +9,9 @@
             <input type="text" id="registerFirst" placeholder="  First Name">
             <input type="text" id="registerLast" placeholder="  Last Name">
             <input type="text" id="registerName" placeholder="  Username">
-            <input type="password" id="registerPassword" placeholder="  Password">
-            <button type="button" id="signUp" onclick="doRegister();"> Sign Up Now </button>
+            <div id="validate">* Password must be at least 8 characters with one number</div>
+            <input type="password" id="registerPassword" placeholder="  Password" onkeyup="validatePassword()">
+            <button type="button" id="signUp" onclick="tryRegister();"> Sign Up Now </button>
 	    <span id="registerResult"></span>
         </div>
 
@@ -33,4 +34,27 @@
             </a>
         </div>
     </body>
+    <script>
+        function validatePassword()
+        {
+            const validBox = document.getElementById("validate")
+            let ps = document.getElementById("registerPassword").value
+            
+            if(ps.match("/^(?=.*?[0-9]).{8,}$/"))
+            {
+                validBox.innerHTML = "Password valid!"
+                return true
+            }
+            else
+            {
+                validBox.innerHTML = "* Password must be at least 8 characters with one number"
+                return false
+            }
+        }
+
+        function tryRegister()
+        {
+            if(validatePassword()) doRegister();
+        }
+    </script>
 </html>
