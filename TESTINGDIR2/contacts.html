@@ -156,13 +156,7 @@
         }
     }
 
-    function editConfirmPal(contactId) {
-        let firstName = document.getElementById("editFirstName").value;
-        let lastName = document.getElementById("editLastName").value;
-        let number = document.getElementById("editNumber").value;
-        let email = document.getElementById("editEmail").value;
-        let description = document.getElementById("editDescription").value;
-        
+    function editConfirmPal(contactId) {        
         let tmp = {
             id: contactId,
             firstName: firstName,
@@ -196,7 +190,7 @@
         }
     }
 
-    function getActivePal() {
+    function getEditingPal() {
 
         let tmp = {
             id: activeID
@@ -212,7 +206,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     if (this.responseText.includes("results")) {
                         let jsonObject = JSON.parse(xhr.responseText);
-                        return jsonObject.results[0]
+                        setEditText(jsonObject.results[0])
                     } else {
                         document.getElementById("editResult").innerHTML = "Error updating PawPal.";
                     }
@@ -224,6 +218,15 @@
         }
     }
 
+    function setEditText(pal)
+    {
+        document.getElementById('editFirstName').value = pal.firstName;
+        document.getElementById('editLastName').value = pal.lastName;
+        document.getElementById('editNumber').value = pal.phone;
+        document.getElementById('editEmail').value = pal.email;
+        document.getElementById('editDescription').value = pal.description;
+    }
+
         function closePal(){   //closes popup windows
             document.getElementById('createPal').style.display = 'none';
             document.getElementById('editPawPal').style.display ='none';
@@ -232,16 +235,11 @@
         }
 
         function editPal(row) { //calls the edit box with auto filled info
-            const curPal = getActivePal()
-
-            document.getElementById('editFirstName').value = curPal.firstName;
-            document.getElementById('editLastName').value = curPal.lastName;
-            document.getElementById('editNumber').value = curPal.phone;
-            document.getElementById('editEmail').value = curPal.email;
-            document.getElementById('editDescription').value = curPal.description;
 
             document.getElementById('editPawPal').style.display = 'flex';
             document.getElementById('overlay').style.display = 'block';
+
+            getEditingPal();
         }
 
         function deletePal(row) { //calls the delete box asking if they are sure
