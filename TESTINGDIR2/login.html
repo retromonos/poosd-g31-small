@@ -1,0 +1,25 @@
+<html>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="loginStyle.css" rel="stylesheet">
+
+    <body>
+        <div id ="loginBox">
+            <h1> Log In </h1>
+            <input type="text" id="loginName" placeholder="  Username">
+            <input type="password" id="loginPassword" placeholder="  Password">
+            <div id ="checkboxContainer">
+                <input type="checkbox" id="rememberMe" value="lsRememberMe">
+                <label id="rememberMeText" for="rememberMe">Remember Me</label>
+            </div>
+            <button type="button" id="loginButton" onclick="doLogin();"> Log In </button>
+
+            <div id="loginResult">
+                <span id="resultMsg"></span>
+            </div>
+            <span id = "or">---------------- Or ----------------</span>
+            <span id = "account"> Don't have an account yet?</span>
+            <a href="signUp.html">Create Account</a>
+        </div>
+    </body>
+</html>

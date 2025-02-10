@@ -1,0 +1,36 @@
+<html>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="signUpStyle.css" rel="stylesheet">	
+
+    <body>
+        <div id ="signUpBox">
+            <h1> Sign Up</h1>
+            <input type="text" id="registerFirst" placeholder="  First Name">
+            <input type="text" id="registerLast" placeholder="  Last Name">
+            <input type="text" id="registerName" placeholder="  Username">
+            <input type="password" id="registerPassword" placeholder="  Password">
+            <button type="button" id="signUp" onclick="doRegister();"> Sign Up Now </button>
+	    <span id="registerResult"></span>
+        </div>
+
+        <div id="overlay"></div>
+        <div id = "popUpBoxS">
+            <p>Account succesfully created!</br>
+                <a href="login.html">Click here</a> to log in.
+            </p>
+        </div>
+
+        <div id = "popUpBoxE">
+            <p>Error while creating account. Please try again.</br>
+                <a href="signUp.html">Click here</a> to create account.
+            </p>
+        </div>
+        
+        <div id ="homePage">
+            <a href="login.html">
+                <button type="button" id="homeButton"> Log In </button>
+            </a>
+        </div>
+    </body>
+</html>

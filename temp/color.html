@@ -1,40 +1,31 @@
 <html>
-<head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-		readCookie();
-	}, false);
-	</script>
-	
-</head>
-<body>
+    <head>
+        <title>Search</title>
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/code.js"></script>
+        <link href="css/styles.css" rel="stylesheet">
+        <link rel="icon" href="files/favicon.png" type="image/png">	
+    </head>
+    <body>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+    <div class="content">
+        <h1>Search</h1>
 
-<div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
-</div>
+        <span id="userName"></span><br>
 
-<div id="accessUIDiv">
-	<br />
+        <input type="text" id="searchText" placeholder="Color To Search For"/>
+        <button type="button" id="searchColorButton" class="buttons" onclick="searchColor();"> Search Color </button><br />
+        <span id="colorSearchResult"></span>
+        <p id="colorList">
+        </p>
 
-	<input type="text" id="searchText" placeholder="Color To Search For"/>
-	<button type="button" id="searchColorButton" class="buttons" onclick="searchColor();"> Search Color </button><br />
-	<span id="colorSearchResult"></span>
-	<p id="colorList">
-	</p><br /><br />
+        <input type="text" id="colorText" placeholder="Color To Add">
+        <button type="button" id="addColorButton" class="buttons" onclick="addColor();"> Add Color </button><br />
+        <span id="colorAddResult"></span>
 
-	<input type="text" id="colorText" placeholder="Color To Add">
-	<button type="button" id="addColorButton" class="buttons" onclick="addColor();"> Add Color </button><br />
-	<span id="colorAddResult"></span>
-</div>
+        <br>
+        <button type="button" id="logoutButton" class="buttons" onclick="doLogout();">Log Out</button>
+    </div>
 
-</body>
+    </body>
 </html>

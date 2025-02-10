@@ -1,0 +1,87 @@
+<html>
+    <script type="text/javascript" src="md5.js"></script>
+    <link href="loginStyle.css" rel="stylesheet">
+
+    <body>
+        <div id ="loginBox">
+            <h1> Log In </h1>
+            <input type="text" id="username" placeholder="  Username">
+            <input type="password" id="password" placeholder="  Password">
+            <div id ="checkboxContainer">
+                <input type="checkbox" id="rememberMe" value="lsRememberMe">
+                <label id="rememberMeText" for="rememberMe">Remember Me</label>
+            </div>
+            <button type="button" id="loginButton" onclick="doLogin();"> Log In </button>
+
+            <div id="loginResult">
+                <span id="resultMsg"></span>
+            </div>
+            <span id = "or">---------------- Or ----------------</span>
+            <span id = "account"> Don't have an account yet?</span>
+            <a href="signUp.html">Create Account</a>
+        </div>
+
+        <script>
+		let urlBase = 'http://poosdsm31-2025.me/chayaTets';
+		let extension = 'php';
+            function doLogin()
+            {
+                userId = 0;
+                firstName = "";
+                lastName = "";
+                
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+            //	var hash = md5( password );
+            
+                document.getElementById("loginResult").innerHTML = "";
+
+                let tmp = {username:username,password:password};
+            //	var tmp = {login:login,password:hash};
+                let jsonPayload = JSON.stringify( tmp );
+                
+                let url = urlBase + '/Login.' + extension;
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+                try
+                {
+                    xhr.onreadystatechange = function() 
+                    {
+                        if (this.readyState == 4 && this.status == 200) 
+                        {
+                            let jsonObject = JSON.parse( xhr.responseText );
+                            userId = jsonObject.id;
+                    
+                            if( userId < 1 )
+                            {		
+                                document.getElementById("loginResult").innerHTML = "Username/Password combination incorrect";
+                                return;
+                            }
+                    
+                            firstName = jsonObject.firstName;
+                            lastName = jsonObject.lastName;
+
+                            saveCookie();
+
+                            window.location.href = "contacts.html";
+                        }
+                    };
+                    xhr.send(jsonPayload);
+                }
+                catch(err)
+                {
+                    document.getElementById("loginResult").innerHTML = err.message;
+                }
+            }
+	function saveCookie()
+	{	
+		let minutes = 20;
+		let date = new Date();
+		date.setTime(date.getTime()+(minutes*60*1000));
+		document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	}
+        </script>
+    </body>
+</html>

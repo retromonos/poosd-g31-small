@@ -1,98 +1,95 @@
-.content {
-	padding: 20px 50px 50px 50px;
-	border-style: solid;
-	border-color: black;
-	border-width: 6px;
-	border-radius: 10px;
-	max-width: 350px;
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);	text-align: center;
-	background-color: lightgray;
-}
-
-html 
+body 
 {
-    background-color: lightblue;
+    background-color: #707070;
 }
 
-h1 {
-	font-family: 'Trebuchet MS', sans-serif;
+#title 
+{
+    font-size: 40px;
+    width: 100%;
+    margin: 2% 5%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #FFFFFF;
 }
 
-h2 {
-	font-family: 'Trebuchet MS', sans-serif;
+#loginDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
 }
 
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+#loggedInDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
 }
-  
-.flex-column {
-    display: flex;
-    flex-direction: column;
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #b2b2b2;
 }
 
 .buttons
 {
-    font-size: 25px;
-    margin-top: 15px;
-	margin-bottom: 15px;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    font-family: 'Ubuntu', sans-serif;
 }
 
-.buttons:hover {
-    background-color: lightblue;
-}
-
-br {
-	margin-bottom: 20px;
+.buttons:hover{
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    opacity: 50%;
 }
 
 #loginName
 {
-	font-size: 25px;
+	font-size: 30px;
 }
 #loginPassword
 {
-	font-size: 25px;
-}
-#registerFirst
-{
-	font-size: 25px;
-}
-#registerLast
-{
-	font-size: 25px;
-}
-#registerName
-{
-	font-size: 25px;
-}
-#registerPassword
-{
-	font-size: 25px;
+	font-size: 30px;
 }
 #searchText
 {
-	font-size: 25px;
+	font-size: 30px;
 }
 #colorText
 {
-	font-size: 25px;
+	font-size: 30px;
 }
 
 input[type="text"],input[type="password"]{
+    border-radius: 25px;
     text-align: center;
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#inner-title{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
 }
 
 #loginResult{
@@ -111,6 +108,11 @@ input[type="text"],input[type="password"]{
     width: 80%;
     margin-left: 10%;
     text-align: center;
+}
+
+#logoutButton{
+    width: 20%;
+    margin-left: 40%;
 }
 
 select{

@@ -1,0 +1,81 @@
+<html>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="signUpStyle.css" rel="stylesheet">	
+
+    <body>
+        <div id ="signUpBox">
+            <h1> Sign Up</h1>
+            <input type="text" id="firstName" placeholder="  First Name">
+            <input type="text" id="lastName" placeholder="  Last Name">
+            <input type="text" id="username" placeholder="  Username">
+            <input type="password" id="password" placeholder="  Password">
+            <button type="button" id="signUp" onclick="doSignUp();"> Sign Up Now </button>
+        </div>
+
+        <div id="overlay"></div>
+        <div id = "popUpBoxS">
+            <p>Account succesfully created!</br>
+                <a href="login.html">Click here</a> to log in.
+            </p>
+        </div>
+
+        <div id = "popUpBoxE">
+            <p>Error while creating account. Please try again.</br>
+                <a href="signUp.html">Click here</a> to create account.
+            </p>
+        </div>
+        
+        <div id ="homePage">
+            <a href="login.html">
+                <button type="button" id="homeButton"> Log In </button>
+            </a>
+        </div>
+    </body>
+    <script>
+        function doSignUp()
+        {
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let login = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+        //	var hash = md5( password );
+            
+            let tmp = {firstName: firstName, lastName: lastName, login:login,password:password};
+        //	var tmp = {login:login,password:hash};
+            let jsonPayload = JSON.stringify( tmp );
+            
+            let url = urlBase + '/SignUp.' + extension;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            try
+            {
+                xhr.onreadystatechange = function() 
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        let jsonObject = JSON.parse( xhr.responseText );
+                
+                        if( jsonObject.success ){
+                            document.getElementById("popUpBoxS").style.display = 'flex';
+                            document.getElementById("overlay").style.display = 'block';
+                        }
+                        else{
+                            document.getElementById("popUpBoxE").style.display = 'flex';
+                            document.getElementById("overlay").style.display = 'block';
+                        }
+                    }
+                };
+                xhr.send(jsonPayload);
+            }
+            catch(err)
+            {
+                document.getElementById("popUpBoxE").style.display = 'flex';
+                document.getElementById("overlay").style.display = 'block';
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,79 @@
+body{
+    background-image: url('welcome.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Bradley Hand', cursive;
+}
+h1{
+    font-size: 50px;
+}
+div{
+    width: 800px;
+    height: 400px;
+    padding: 10px;
+    background-color: #ffebb5;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #000000;
+    border: 5px solid white;
+    font-size: 20px;
+    border-radius: 25px;
+    animation-name: slideIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+button{
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    width: 300px;
+    height: 50px;
+}
+@keyframes slideIn{
+    from{
+        transform: translateY(100vh);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+img{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+#catsdogs{
+    display: block;
+    margin: 0 auto 10px;
+    width: 800px;
+    height: 400px;
+    left: 48px;
+}
+#pawButton{
+    display: block;
+    margin: 0 auto 20px;
+    width: 60px;
+    height: 60px;
+    left: 378px;
+    cursor: pointer;
+}
+#clickHere{
+    position: absolute;
+    margin-top: 10px;
+    left: 295px;
+}
+p{
+    font-size: 25px;
+    margin-top: 150px;
+}
+
+
