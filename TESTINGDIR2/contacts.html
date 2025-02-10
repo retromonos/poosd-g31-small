@@ -57,7 +57,7 @@
             <input type="text" id="editEmail" placeholder="  Email">
             <input type="text" id="editDescription" placeholder="  Description">
 
-            <button type="button" id="edit" onclick="editConfirmPal(editingID)"> Save </button>
+            <button type="button" id="edit" onclick="editConfirmPal(activeID)"> Save </button>
             <button type="button" id="cancel1" onclick="closePal()"> Cancel </button>
         </div>
 
@@ -79,7 +79,7 @@
 
         <div id="deletePawPal">
             <p>Are you sure you want to delete PawPal?</p>
-            <button type="button" id="delete" onclick="deleteConfirmPal()"> Delete </button>
+            <button type="button" id="delete" onclick="deleteConfirmPal(activeID)"> Delete </button>
             <button type="button" id="cancel2" onclick="closePal()"> Cancel </button>
         </div>
         
@@ -89,7 +89,7 @@
     </body>
 
     <script>
-        let editingID = 0;
+        let activeID = 0;
         window.onload = function(){
             readCookie();
             searchPal(false);
@@ -342,7 +342,7 @@
                             editImg.alt = 'Edit';
                             editButton.appendChild(editImg);
                             editButton.onclick = function() {
-                                editingID = pal.id
+                                activeID = pal.id;
                                 editPal(newRow);
                             };
                             cell5.appendChild(editButton);
@@ -356,6 +356,7 @@
                             deleteImg.alt = 'Delete';
                             deleteButton.appendChild(deleteImg);
                             deleteButton.onclick = function() {
+                                activeID = pal.id;
                                 deletePal(newRow);
                             };
                             cell6.appendChild(deleteButton);                    
