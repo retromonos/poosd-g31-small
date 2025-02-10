@@ -20,7 +20,7 @@ function doLogin()
 	let password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
 	
-	document.getElementById("loginResult").innerHTML = "";
+	document.getElementById("resultMsg").innerHTML = "";
 
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
@@ -42,7 +42,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("resultMsg").innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -58,7 +58,7 @@ function doLogin()
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("resultMsg").innerHTML = err.message;
 	}
 
 }
