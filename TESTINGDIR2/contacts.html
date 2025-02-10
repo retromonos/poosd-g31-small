@@ -12,7 +12,7 @@
             <img id="pets" src="pets.png" alt="pets">
             <div id="searchBar">
                 <img id="searchIcon" src="searchIcon.png">
-                <input type="text" id="search" placeholder=" Search for PawPals..." onkeyup="searchPal()">
+                <input type="text" id="search" placeholder=" Search for PawPals..." onkeyup="searchPal(false)">
             </div>
             <button type="button" id="addPal" onclick="createPawPal()"> Add PawPal </button>
 
@@ -89,6 +89,7 @@
     </body>
 
     <script>
+        let editingID = 0;
         window.onload = function(){
             readCookie();
         }
@@ -272,54 +273,8 @@
                     {
                         document.getElementById("addResult").innerHTML = "PawPal has been successfully added!";
 
-                        const tableBody = document.getElementById('pawPalTable').getElementsByTagName('tbody')[0];
-                        const newRow = tableBody.insertRow();
+                        searchPal();
 
-                        const cell1 = newRow.insertCell(0);
-                        const cell2 = newRow.insertCell(1);
-                        const cell3 = newRow.insertCell(2);
-                        const cell4 = newRow.insertCell(3);
-                        const cell5 = newRow.insertCell(4);
-                        const cell6 = newRow.insertCell(5);
-
-                        cell1.textContent = firstName;
-                        cell2.textContent = lastName;
-                        cell3.textContent = number;
-                        cell4.textContent = email;
-
-                        const editButton = document.createElement('button');
-                        editButton.type = 'button';
-                        editButton.classList.add('edit-button');
-                        const editImg = document.createElement('img');
-                        editImg.src = 'edit.png';
-                        editImg.alt = 'Edit';
-                        editButton.appendChild(editImg);
-                        editButton.onclick = function() {
-                            editPal(newRow);
-                        }
-                        cell5.appendChild(editButton);
-
-                    
-                        const deleteButton = document.createElement('button');
-                        deleteButton.type = 'button';
-                        deleteButton.classList.add('delete-button');
-                        const deleteImg = document.createElement('img');
-                        deleteImg.src = 'delete.png';
-                        deleteImg.alt = 'Delete';
-                        deleteButton.appendChild(deleteImg);
-                        deleteButton.onclick = function() {
-                            deletePal(newRow);
-                        };
-                        cell6.appendChild(deleteButton);
-
-                        // empties input feilds
-                        document.getElementById('firstName').value = '';
-                        document.getElementById('lastName').value = '';
-                        document.getElementById('number').value = '';
-                        document.getElementById('email').value = '';
-                        document.getElementById('description').value = '';
-
-                        //closes createpawbox
                         closePal();
                     }
                 };
@@ -330,7 +285,8 @@
                 document.getElementById("addResult").innerHTML = err.message;
             }
         }
-        function searchPal() {
+        function searchPal(clear) {
+            //if clear is true then show ALL results
             let srch = document.getElementById("search").value.toLowerCase();  // gets search
             let table = document.getElementById("pawPalTable");
             let tableBody = table.getElementsByTagName('tbody')[0];
@@ -339,7 +295,7 @@
             tableBody.innerHTML = "";
 
             let tmp = {
-                search: srch,
+                search: clear ? "" : srch,
                 userID: userId
             };
 
@@ -359,88 +315,7 @@
                         // Parse the response from the server
 			console.log(xhr.responseText);
                         let jsonObject = JSON.parse(xhr.responseText);
-
-                        if (srch === "") {
-                            // If the search field is empty, fetch all records or display all table rows
-                            displayAllRows();  // This function will fill the table with all data
-                        } else {
-                            // Otherwise, populate the table with filtered results
-                            for (let i = 0; i < jsonObject.results.length; i++) {
-                                let pal = jsonObject.results[i];
-                                let newRow = tableBody.insertRow();
-
-                                let cell1 = newRow.insertCell(0);
-                                let cell2 = newRow.insertCell(1);
-                                let cell3 = newRow.insertCell(2);
-                                let cell4 = newRow.insertCell(3);
-                                let cell5 = newRow.insertCell(4);
-                                let cell6 = newRow.insertCell(5);
-
-                                cell1.textContent = pal.firstName;
-                                cell2.textContent = pal.lastName;
-                                cell3.textContent = pal.phone;
-                                cell4.textContent = pal.email;
-
-                                //edit buttom
-                                const editButton = document.createElement('button');
-                                editButton.type = 'button';
-                                editButton.classList.add('edit-button');
-                                const editImg = document.createElement('img');
-                                editImg.src = 'edit.png';
-                                editImg.alt = 'Edit';
-                                editButton.appendChild(editImg);
-                                editButton.onclick = function() {
-                                    editPal(newRow);
-                                };
-                                cell5.appendChild(editButton);
-
-                                //delete button
-                                const deleteButton = document.createElement('button');
-                                deleteButton.type = 'button';
-                                deleteButton.classList.add('delete-button');
-                                const deleteImg = document.createElement('img');
-                                deleteImg.src = 'delete.png';
-                                deleteImg.alt = 'Delete';
-                                deleteButton.appendChild(deleteImg);
-                                deleteButton.onclick = function() {
-                                    deletePal(newRow);
-                                };
-                                cell6.appendChild(deleteButton);                    }
-                        }
-
-                        document.getElementById("searchResult").innerHTML = "PawPal(s) retrieved successfully";
-                    }
-                };
-                xhr.send(jsonPayload); 
-            } catch (err) {
-                document.getElementById("searchResult").innerHTML = err.message; 
-            }
-        }
-
-        //display all rows when the search is cleared
-        function displayAllRows() {
-            let table = document.getElementById("pawPalTable");
-            let tableBody = table.getElementsByTagName('tbody')[0];
-            
-            let tmp = {
-                search: "",  // Empty search query to fetch all records
-                userId: userId
-            };
-            
-            let jsonPayload = JSON.stringify(tmp);
-            
-            let url = urlBase + '/SearchContacts.' + extension;
-            
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-            try {
-                xhr.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        let jsonObject = JSON.parse(xhr.responseText);
-
-                        // Loop through the server results and populate the table
+                            
                         for (let i = 0; i < jsonObject.results.length; i++) {
                             let pal = jsonObject.results[i];
                             let newRow = tableBody.insertRow();
@@ -454,10 +329,10 @@
 
                             cell1.textContent = pal.firstName;
                             cell2.textContent = pal.lastName;
-                            cell3.textContent = pal.number;
+                            cell3.textContent = pal.phone;
                             cell4.textContent = pal.email;
 
-                            //edit button
+                            //edit buttom
                             const editButton = document.createElement('button');
                             editButton.type = 'button';
                             editButton.classList.add('edit-button');
@@ -466,6 +341,7 @@
                             editImg.alt = 'Edit';
                             editButton.appendChild(editImg);
                             editButton.onclick = function() {
+                                editingID = pal.id
                                 editPal(newRow);
                             };
                             cell5.appendChild(editButton);
@@ -481,11 +357,13 @@
                             deleteButton.onclick = function() {
                                 deletePal(newRow);
                             };
-                            cell6.appendChild(deleteButton);
+                            cell6.appendChild(deleteButton);                    
                         }
+                        
+                        document.getElementById("searchResult").innerHTML = "PawPal(s) retrieved successfully";
                     }
                 };
-                xhr.send(jsonPayload);
+                xhr.send(jsonPayload); 
             } catch (err) {
                 document.getElementById("searchResult").innerHTML = err.message; 
             }
