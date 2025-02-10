@@ -180,6 +180,8 @@ h2{
     color: white;
     position: sticky;
     border: 5px solid white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     top: 0;
     background-color: #a37a69;
     font-size: 20px;
