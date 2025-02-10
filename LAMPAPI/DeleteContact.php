@@ -4,9 +4,6 @@
 
     $id = $inData["id"];
 
-$conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
-
-
 	$conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
 
 	if ($conn->connect_error) 
@@ -16,8 +13,6 @@ $conn = new mysqli("localhost", "dbuser", "POOST31g", "poosd31");
 	else
 	{
 		$stmt = "DELETE FROM Contacts WHERE ID = ".$id;
-
-
 
         if($conn->query($stmt) == TRUE){
             echo "Contact delete successfully!";
